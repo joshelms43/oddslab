@@ -1075,9 +1075,14 @@ function processScannedOdds(scannedGames) {
 }
 
 function fuzzyMatch(scannedName, apiName) {
-  const s = scannedName.toLowerCase();
-  const words = apiName.toLowerCase().split(' ');
-  return words.some(w => w.length > 3 && s.includes(w));
+  const s = scannedName.toLowerCase().replace(/[^a-z0-9 ]/g, '');
+  const a = apiName.toLowerCase().replace(/[^a-z0-9 ]/g, '');
+  if(s === a) return true;
+  if(a.includes(s) || s.includes(a)) return true;
+  const sWords = s.split(' ').filter(w => w.length > 2);
+  const aWords = a.split(' ').filter(w => w.length > 2);
+  const matches = sWords.filter(w => aWords.some(aw => aw.includes(w) || w.includes(aw)));
+  return matches.length >= 1;
 }
 
 function findApiGame(scannedTeam1, scannedTeam2) {
