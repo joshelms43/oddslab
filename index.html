@@ -1016,7 +1016,7 @@ async function runScan(dataUrl) {
             {type:'image', source:{type:'base64', media_type:mediaType, data:base64}},
             {type:'text', text:`This is a screenshot from a sports betting app. Extract every head to head game visible. Return ONLY a JSON array, no other text, no markdown:
 [{"team1":"Team Name","team2":"Team Name","odds1":2.50,"odds2":1.55}]
-odds1 is for team1 winning, odds2 is for team2 winning.`}
+odds1 is for team1 winning, odds2 is for team2 winning. IMPORTANT: Always use the full official team name including city or nickname, for example "Richmond Tigers" not "Richmond", "Cronulla Sutherland Sharks" not "Sharks", "New Zealand Warriors" not "Warriors".`}
           ]
         }]
       })
